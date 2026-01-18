@@ -12,4 +12,16 @@ export default {
             }
         });
     }
+    ,
+    getUserLoginInfo : (params: any): Promise<any> => {
+
+        return new Promise<any>(async (resolve, reject) => {
+            try {
+                const { data, status } =  await sophiaHttpColection.get('api/logininfo');
+                resolve({ data, status });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 }

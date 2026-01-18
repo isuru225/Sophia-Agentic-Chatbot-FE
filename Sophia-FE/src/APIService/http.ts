@@ -5,69 +5,66 @@ const axiosInstance = {
     headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
-        'Access-Control-Allow-Origin': "*",
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        'Access-Control-Allow-Origin': "*"
     }
 
 }
 
-const getToken = () => `Bearer ${localStorage.getItem('token')}`
-
- const sophiaHttp = {
-    get : async (uniqueURL: string) => {
+const sophiaHttp = {
+    get: async (uniqueURL: string) => {
         return await axios.get(`${axiosInstance.baseURL}${uniqueURL}`,
             {
+                withCredentials: true,
                 headers: {
-                    ...axiosInstance.headers,
-                    Authorization : getToken()
+                    ...axiosInstance.headers
                 }
             }
         )
     }
     ,
-    getbyparams : async (uniqueURL: string, params : object) => {
+    getbyparams: async (uniqueURL: string, params: object) => {
         return await axios.get(`${axiosInstance.baseURL}${uniqueURL}`,
             {
-                params : params,
+                params: params,
+                withCredentials: true,
                 headers: {
-                    ...axiosInstance.headers,
-                    Authorization : getToken()
+                    ...axiosInstance.headers
                 }
             }
         )
     }
     ,
-    post :  async (uniqueURL: string, data : any) => {
+    post: async (uniqueURL: string, data: any) => {
         return await axios.post(`${axiosInstance.baseURL}${uniqueURL}`, data,
             {
+                withCredentials: true,
                 headers: {
-                    ...axiosInstance.headers,
-                    Authorization : getToken()
+                    ...axiosInstance.headers
                 }
             }
         )
     }
     ,
-    delete : async (uniqueURL: string, id : any) => {
+    delete: async (uniqueURL: string, id: any) => {
         return await axios.delete(`${axiosInstance.baseURL}${uniqueURL}/${id}`,
             {
+                withCredentials: true,
                 headers: {
-                    ...axiosInstance.headers,
-                    Authorization : getToken()
+                    ...axiosInstance.headers
                 }
             }
-        ) 
+        )
     }
     ,
-    put : async (uniqueURL: string, id : any, data : any) => {
-        return await axios.put(`${axiosInstance.baseURL}${uniqueURL}/${id}`,data,
+    put: async (uniqueURL: string, id: any, data: any) => {
+        return await axios.put(`${axiosInstance.baseURL}${uniqueURL}/${id}`, data,
             {
+                withCredentials: true,
                 headers: {
-                    ...axiosInstance.headers,
-                    Authorization : getToken()
+                    ...axiosInstance.headers
                 }
             }
-        ) 
+        )
     }
 }
 

@@ -1205,3 +1205,45 @@
     background: #fff;
     z-index: 10;
 }
+
+//////////////// Login Section //////////////////
+.social-login {
+  max-width: 360px;
+  margin: auto;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn img {
+  width: 20px;
+}
+
+.btn.google:hover {
+  background: #f8f8f8;
+}
+
+.btn.github {
+  background: #24292e;
+  color: white;
+  border: none;
+}
+
+.btn.github:hover {
+  background: #1b1f23;
+}
+
+.divider {
+  text-align: center;
+  margin: 16px 0;
+  color: #999;
+}

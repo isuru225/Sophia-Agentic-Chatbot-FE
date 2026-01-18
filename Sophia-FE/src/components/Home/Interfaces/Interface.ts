@@ -13,3 +13,9 @@ export interface IEmployeeInfos {
     email : string,
     phoneNumber : string
 }
+
+
+export interface IUser {
+    name : string,
+    email : string
+}

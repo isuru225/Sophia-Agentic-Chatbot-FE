@@ -21,52 +21,27 @@ import {
   cilMoon,
   cilSun,
 } from '@coreui/icons'
+import { connect } from 'react-redux'
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { JWTDecoder } from './Home/Functions/Functions.tsx'
 import logo from "../assets/images/TN2.png"
+import { LoginActions } from '../actions/Login/Login.ts'
 
-const AppHeader = () => {
+const AppHeader = (props) => {
   const headerRef = useRef()
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme');
   const [userName, setUserName] = useState(null);
-
-  const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow);
   const navigate = useNavigate();
+  const { getUserLoginInfo, user } = props ?? {}
 
-  //const loginStatus = useSelector((state) => state.LoginReducer.isLoginSuccessfull);
-  //const registerStatus = useSelector((state) => state.RegisterReducer.isRegistered);
+  useEffect(() => {
+    getUserLoginInfo({});
+  }, [])
 
-
-  // useEffect(() => {
-  //   const encodedValue = localStorage.getItem('token');
-  //   if (encodedValue !== null) {
-  //     const decodedPayload = JWTDecoder(encodedValue);
-  //     const { fullName, exp } = decodedPayload;
-  //     //check the expiration time of the token
-  //     if (exp !== null) {
-  //       const currentTime = Math.floor(Date.now() / 1000);
-  //       if (currentTime < exp) {
-  //         if (fullName !== null) {
-  //           setUserName(fullName);
-  //         } else {
-  //           setUserName(null);
-  //         }
-  //       } else {
-  //         setUserName(null);
-  //       }
-  //     } else {
-  //       setUserName(null);
-  //     }
-  //   } else {
-  //     setUserName(null);
-  //     navigate('/login')
-  //   }
-
-  // }, [])
-
+  console.log("HOLEEOLLEE",user?.data)
 
   useEffect(() => {
 
@@ -100,14 +75,17 @@ const AppHeader = () => {
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav className="ms-auto">
-          {userName && <CNavItem>
+          {user.data?.loginInfo && <CNavItem>
+            {`Hi ${user.data?.loginInfo.name}, Welcome to Sophia.`}
+            </CNavItem>}
+          {/* {userName && <CNavItem>
             <CNavLink>
-              {`Hi ${userName}, Welcome to Task Nest.`}
+              {`Hi ${}, Welcome to Task Nest.`}
             </CNavLink>
           </CNavItem>}
           {!userName && <CNavItem>
             <CNavLink href="#/login">Login</CNavLink>
-          </CNavItem>}
+          </CNavItem>} */}
         </CHeaderNav>
         <CHeaderNav>
           <li className="nav-item py-1">
@@ -164,4 +142,21 @@ const AppHeader = () => {
 }
 
 
-export default AppHeader;
+const mapStateToProps = (state) => {
+  const { LoginReducer } = state;
+  const { data, isLoading, user } = LoginReducer;
+
+  return {
+    data,
+    isLoading,
+    user
+  };
+}
+
+const mapDispatchToProps = {
+  getUserLoginInfo: LoginActions.userLoginInfo.get
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+export default connector(AppHeader);

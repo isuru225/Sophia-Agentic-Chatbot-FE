@@ -1,4 +1,8 @@
 export interface HomeInterface {
     data : object,
-    isLoading : boolean
+    isLoading : boolean,
+    user : {
+        data : object,
+        isLoading : boolean
+    }
 }

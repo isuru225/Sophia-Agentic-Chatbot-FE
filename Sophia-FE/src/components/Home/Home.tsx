@@ -5,7 +5,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { HomeActions } from '../../actions/Home/Home.ts';
 import { errorMessages, projectButtonColorCode } from "./Constants/Constants.ts";
 import { getSelectedProject, JWTDecoder, techStackHandler, userValidationHandler } from './Functions/Functions.tsx';
-import { IProject } from './Interfaces/Interface.ts';
+import { IProject, IUser } from './Interfaces/Interface.ts';
 import { useNavigate } from 'react-router-dom';
 import { FileImageOutlined, TaobaoOutlined, TagsOutlined } from '@ant-design/icons';
 import type { GetProps } from 'antd';
@@ -16,26 +16,13 @@ type SearchProps = GetProps<typeof Input.Search>;
 
 const Home: React.FC<props> = (props) => {
 
-    const { data, isLoading, setUserQuery } = props ?? {};
+    const { data, isLoading, setUserQuery, user, getUserLoginInfo } = props ?? {};
 
     const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
     const [selectedProject, setSelectedProject] = useState<IProject>();
 
     const { Search } = Input;
     const navigate = useNavigate();
-
-    console.log("MAN", data);
-
-    //get all available projects
-    // useEffect(() => {
-    //     const encodedValue = localStorage.getItem('token');
-    //     if (encodedValue !== null) {
-    //         getAllProjects({});
-    //     } else {
-    //         navigate('/login');
-    //     }
-
-    // }, [])
 
     
 
@@ -95,16 +82,18 @@ const Home: React.FC<props> = (props) => {
 
 const mapStateToProps = (state: any) => {
     const { HomeReducer } = state;
-    const { data, isLoading } = HomeReducer;
+    const { data, isLoading, user } = HomeReducer;
 
     return {
         data,
-        isLoading
+        isLoading,
+        user
     };
 }
 
 const mapDispatchToProps = {
-    setUserQuery: HomeActions.userQuery.set
+    setUserQuery: HomeActions.userQuery.set,
+    getUserLoginInfo : HomeActions.userLoginInfo.get
 }
 
 

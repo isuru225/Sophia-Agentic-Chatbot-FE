@@ -25,11 +25,38 @@ export const HomeSagas = {
       }
     },
   }
+  ,
+  userLoginInfo : {
+    get : function* (action: any) {
+      console.log("raven");
+      try {
+        const { data, status } = yield call(
+          HomeService.getUserLoginInfo , action.payload.data
+        );
+        if (status == 200) {
+          console.log("light234",data);
+          yield put(
+            HomeActions.userLoginInfo.success(data)
+          )
+        }
+
+      } catch (error) {
+        yield put(
+            HomeActions.userLoginInfo.fail(error.response.data?.errorCode)
+        );
+      }
+    },
+  }
 }
 
 export default [
     takeLatest(
       Home.SET_USER_QUERY,
       HomeSagas.userQuery.set
+    )
+    ,
+    takeLatest(
+      Home.GET_USER_LOGIN_INFO,
+      HomeSagas.userLoginInfo.get
     )
   ]

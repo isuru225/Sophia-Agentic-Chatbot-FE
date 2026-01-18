@@ -1,142 +1,92 @@
-import React, { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, Watermark } from 'antd';
+import React, { useEffect } from "react";
+import { Button, Divider } from "antd";
 import {
-    CButton,
-    CCard,
-    CCardBody,
-    CCardGroup,
-    CCol,
-    CContainer,
-    CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
-import { Form, Formik } from 'formik';
-import { $Input } from '../../components/CustomComponents/index.ts';
-import { ILogin, loginInitValues } from './Constants/constants.ts';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { loginValidationSchema } from './Validations/loginValidationSchema.ts';
+    GoogleOutlined,
+    GithubOutlined,
+} from "@ant-design/icons";
 import { connect, ConnectedProps } from 'react-redux';
-import { LoginActions } from '../../actions/Login/Login.ts';
 
-type props = propsFromRedux;
+import { OAuthActions } from "../../actions/OAuth/OAuth.ts";
 
-const Login: React.FC<props> = (props) => {
+type props = PropsFromRedux;
 
-    const { isLoginSuccessfull, token, errorCode, logUserCredentials } = props;
-    const { accessToken, refreshToken, expiresOn } = token ?? {};
-    const navigate = useNavigate();
+const IdentityProviders: React.FC<props> = (props) => {
 
-    const submit = (value: ILogin, actions: any) => {
-        console.log("log",value);
-        logUserCredentials(value);
-        actions.resetForm();
-    }
-    console.log("DMC", errorCode);
-    console.log("waves", token);
-    console.log("spartan", isLoginSuccessfull);
-    useEffect(() => {
-        console.log("spartan22", isLoginSuccessfull);
-        if (isLoginSuccessfull == true) {
-            //when the user is registered , user will be navigated to the Home page
+    const { getAuthURL, authURL } = props ?? {}
 
-            localStorage.setItem('token', accessToken);
-            navigate('/home');
+    const loginWithGoogle = () => {
+        getAuthURL({})
+    };
+
+    const loginWithGithub = () => {
+        //window.location.href = "http://localhost:5000/auth/github/login";
+    };
+
+    useEffect(()=>{
+        console.log("Savage",authURL)
+        if(authURL?.data.auth_url != "" && authURL?.data.auth_url != undefined){
+            window.location.href = authURL?.data.auth_url
         }
-    }, [isLoginSuccessfull])
-
-    const forgetPassword = () => {
-
-    }
-
-    const register = () => {
-        navigate('/register');
-    }
+    },[authURL?.data])
 
     return (
-        <>
-            {/* <div style={{ height: 500 }} /> */}
-            <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
-                <CContainer>
-                    <CRow className="justify-content-center">
-                        <CCol md={8}>
-                            <CCardGroup>
-                                <CCard className="p-4">
-                                    <CCardBody>
-                                        <Formik
-                                            initialValues={loginInitValues}
-                                            onSubmit={submit}
-                                            validationSchema={loginValidationSchema}>
-                                            {() => (
+        <div style={styles.container}>
+            <Button
+                icon={<GoogleOutlined />}
+                size="large"
+                block
+                onClick={loginWithGoogle}
+                style={styles.googleBtn}
+            >
+                Continue with Google
+            </Button>
 
-                                                <Form>
-                                                    <h2>Login</h2>
-                                                    <UserOutlined />
-                                                    <$Input label="User Name"
-                                                        type="text"
-                                                        name="userName"
-                                                        placeholder="Enter your name..." />
-                                                    <br />
-                                                    <LockOutlined />
-                                                    <$Input label="Password"
-                                                        type="password"
-                                                        name="password"
-                                                        placeholder="Enter password name..." />
-                                                    <br />
-                                                    {(errorCode == 101 || errorCode == 102) && <small className="error-msg">*User name or password is incorrect. Check again.</small>}
-                                                    <br />
-                                                    <br />
-                                                    <CContainer>
-                                                        <CRow>
-                                                            <CCol>
-                                                                <Button type="primary" htmlType='submit'>Login</Button>
-                                                            </CCol>
-                                                            <CCol>
-                                                                <Button type="link" onClick={forgetPassword}>Forget Password?</Button>
-                                                            </CCol>
-                                                        </CRow>
-                                                    </CContainer>
-                                                </Form>
-                                            )}
+            <Divider>OR</Divider>
 
-                                        </Formik>
+            <Button
+                icon={<GithubOutlined />}
+                size="large"
+                block
+                onClick={loginWithGithub}
+                style={styles.githubBtn}
+            >
+                Continue with GitHub
+            </Button>
+        </div>
+    );
+};
 
-                                    </CCardBody>
-                                </CCard>
-                                <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                                    <CCardBody className="text-center">
-                                        
-                                    </CCardBody>
-                                </CCard>
-                            </CCardGroup>
-                        </CCol>
-                    </CRow>
-                </CContainer>
-            </div>
-        </>
+const styles = {
+    container: {
+        maxWidth: 360,
+        margin: "auto",
+    },
+    googleBtn: {
+        borderRadius: 6,
+        fontWeight: 500,
+    },
+    githubBtn: {
+        borderRadius: 6,
+        background: "#24292e",
+        color: "#fff",
+        fontWeight: 500,
+    },
+};
 
-    )
-}
+const mapStateToProps = (state: any) => {
+    const { OAuthReducer } = state;
+    const { authURL } = OAuthReducer;
 
-
-const mapStatetoProps = (state: any) => {
-    const { LoginReducer } = state;
-    const { isLoginSuccessfull, token, errorCode } = LoginReducer;
     return {
-        LoginReducer,
-        isLoginSuccessfull,
-        token,
-        errorCode
-    }
+        authURL
+    };
 }
 
-const mapDispathToProps = {
-    logUserCredentials : LoginActions.userCredentials.log
+const mapDispatchToProps = {
+    getAuthURL: OAuthActions.authURL.get
 }
 
-const connector = connect(mapStatetoProps, mapDispathToProps);
-type propsFromRedux = ConnectedProps<typeof connector>;
-export default connector(Login)
 
-
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>
+export default connector(IdentityProviders);

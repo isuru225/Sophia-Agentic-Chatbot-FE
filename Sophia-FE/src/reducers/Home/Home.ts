@@ -13,7 +13,7 @@ export const HomeReducer = (state = HomeInitState, action: any) => {
             }
         case Home.SET_USER_QUERY_SUCCESS:
             return {
-                
+                ...state,
                 data: action.payload.data,
                 isLoading: action.payload.isLoading,
             }
@@ -22,7 +22,30 @@ export const HomeReducer = (state = HomeInitState, action: any) => {
                 ...state,
                 isLoading: action.payload.isLoading,
             }
-        
+        case Home.GET_USER_LOGIN_INFO:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Home.GET_USER_LOGIN_INFO_SUCCESS:
+            return {
+                ...state,
+                user: {
+                    data: action.payload.data,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Home.GET_USER_LOGIN_INFO_FAIL:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    isLoading: action.payload.isLoading
+                }
+            }
         default:
             return state;
     }

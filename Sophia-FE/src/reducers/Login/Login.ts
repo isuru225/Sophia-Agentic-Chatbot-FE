@@ -13,22 +13,48 @@ export const LoginReducer = (state = loginInitState, action: any) => {
             }
         case Login.LOG_USER_CREDNTIALS_SUCCESS:
             return {
-                isLoginSuccessfull : true,
+                ...state,
+                isLoginSuccessfull: true,
                 token: action.payload.data,
                 isLoading: action.payload.isLoading,
-                errorCode : 0
+                errorCode: 0
             }
         case Login.LOG_USER_CREDNTIALS_FAIL:
             return {
                 ...state,
                 isLoading: action.payload.isLoading,
-                errorCode : action.payload.error
+                errorCode: action.payload.error
             }
-        case Login.LOG_OUT_USER : 
+        case Login.LOG_OUT_USER:
             return {
-                isLoginSuccessfull : false,
-                token : {},
-                isLoading : false
+                ...state,
+                isLoginSuccessfull: false,
+                token: {},
+                isLoading: false
+            }
+        case Login.GET_USER_LOGIN_INFO:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Login.GET_USER_LOGIN_INFO_SUCCESS:
+            return {
+                ...state,
+                user: {
+                    data: action.payload.data,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Login.GET_USER_LOGIN_INFO_FAIL:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    isLoading: action.payload.isLoading
+                }
             }
         default:
             return state;

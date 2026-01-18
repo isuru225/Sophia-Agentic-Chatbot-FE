@@ -4,5 +4,9 @@ export const loginInitState : ILogin= {
     isLoginSuccessfull : false,
     tokenInfo : {},
     isLoading : false,
-    errorCode : 0
+    errorCode : 0,
+    user : {
+        data : {},
+        isLoading : false
+    }
 }
