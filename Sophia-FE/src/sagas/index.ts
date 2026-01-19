@@ -4,6 +4,7 @@ import { DashboardSagas } from "./Dashboard/index.ts"
 import { TasksSagas } from "./Tasks/index.ts"
 import { ChatWindowSagas } from "./ChatWindow/index.ts"
 import { OAuthSagas } from "./OAuth/index.ts"
+import { AppSidebarSagas } from "./AppSidebar/index.ts"
 
 export default [ 
     ...LoginSagas,
@@ -11,6 +12,7 @@ export default [
     ...DashboardSagas,
     ...TasksSagas,
     ...ChatWindowSagas,
-    ...OAuthSagas
+    ...OAuthSagas,
+    ...AppSidebarSagas
 ]
 

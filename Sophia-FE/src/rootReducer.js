@@ -13,7 +13,8 @@ import
     DashboardReducer,
     TasksReducer,
     ChatWindowReducer,
-    OAuthReducer
+    OAuthReducer,
+    AppSidebarReducer
   
 } from "./reducers/index.ts"
 
@@ -27,5 +28,6 @@ import
      DashboardReducer,
      TasksReducer,
      ChatWindowReducer,
-     OAuthReducer
+     OAuthReducer,
+     AppSidebarReducer
  })

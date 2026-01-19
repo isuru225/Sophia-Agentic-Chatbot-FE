@@ -61,6 +61,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Models',
+    id:'models',
     icon: <CIcon icon={cibCevo} customClassName="nav-icon" />,
     items: [
       {
@@ -78,30 +79,10 @@ const _nav = [
   ,
   {
     component: CNavGroup,
+    id : 'conversation',
     name: 'Your chats',
     icon: <CIcon icon={cibWechat} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Alerts',
-        to: '/notifications/alerts',
-      },
-      {
-        component: CNavItem,
-        name: 'Badges',
-        to: '/notifications/badges',
-      },
-      {
-        component: CNavItem,
-        name: 'Modal',
-        to: '/notifications/modals',
-      },
-      {
-        component: CNavItem,
-        name: 'Toasts',
-        to: '/notifications/toasts',
-      },
-    ],
+    items: [],
   }
 ]
 

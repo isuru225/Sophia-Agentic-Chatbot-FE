@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Card, Button, Col, Row, Timeline, Input } from 'antd';
+import { Card, Modal, Col, Row, Timeline, Input } from 'antd';
 import { Welcome } from "@ant-design/x";
 import { connect, ConnectedProps } from 'react-redux';
 import { HomeActions } from '../../actions/Home/Home.ts';
@@ -20,17 +20,30 @@ const Home: React.FC<props> = (props) => {
 
     const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
     const [selectedProject, setSelectedProject] = useState<IProject>();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { Search } = Input;
     const navigate = useNavigate();
 
-    
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
     const initialSearchHandler : SearchProps['onSearch'] = (value, _e, info) => {
         console.log(value);
         if(value !== null && value != undefined){
+
+            showModal()
             setUserQuery(value);
-            navigate('/chatwindow');
+            //navigate('/chatwindow');
         }
     }
 
@@ -76,6 +89,16 @@ const Home: React.FC<props> = (props) => {
                     />
                 </Card>
             </Row>
+            <Modal
+                    title="Conversation Identifier"
+                    closable={{ 'aria-label': 'Custom Close Button' }}
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                >
+                    <p>please enter and short conversation description for clarity.</p>
+                    <Input placeholder="Conversation Identifier..."  />
+                </Modal>
         </>
     )
 }

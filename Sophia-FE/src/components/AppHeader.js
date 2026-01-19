@@ -35,13 +35,16 @@ const AppHeader = (props) => {
   const [userName, setUserName] = useState(null);
   const sidebarShow = useSelector((state) => state.sidebarShow);
   const navigate = useNavigate();
-  const { getUserLoginInfo, user } = props ?? {}
-
-  useEffect(() => {
-    getUserLoginInfo({});
-  }, [])
+  const { user } = props ?? {}
 
   console.log("HOLEEOLLEE",user?.data)
+   console.log("HOLEEOLLEE22222222222",user?.data.isValid)
+
+  useEffect(() => {
+    if(user?.data?.isValid === false){
+      navigate("/login")
+    }
+  },[user?.data])
 
   useEffect(() => {
 
@@ -141,22 +144,4 @@ const AppHeader = (props) => {
   )
 }
 
-
-const mapStateToProps = (state) => {
-  const { LoginReducer } = state;
-  const { data, isLoading, user } = LoginReducer;
-
-  return {
-    data,
-    isLoading,
-    user
-  };
-}
-
-const mapDispatchToProps = {
-  getUserLoginInfo: LoginActions.userLoginInfo.get
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-export default connector(AppHeader);
+export default AppHeader;

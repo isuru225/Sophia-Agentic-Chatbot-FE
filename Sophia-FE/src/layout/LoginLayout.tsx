@@ -9,11 +9,11 @@ const LoginLayout = ({ children  } : any ) => {
 
   return (
     <div className="wrapper d-flex flex-column min-vh-100">
-      {isAllowed && <AppHeader />}
+      {!isAllowed && <AppHeader />}
       <div className="body flex-grow-1">
         {children}
       </div>
-      {isAllowed && <AppFooter />}
+      {!isAllowed && <AppFooter />}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Card, Button, Col, Row, Timeline, Input, Avatar, Flex } from 'antd';
+import { Input, Avatar, Flex } from 'antd';
 import { Sender, Actions, Bubble } from '@ant-design/x';
 import { connect, ConnectedProps } from 'react-redux';
 import { ChatWindowActions } from '../../actions/ChatWindow/ChatWindow.ts';
@@ -8,6 +8,7 @@ import { FileImageOutlined, TaobaoOutlined, TagsOutlined, CopyOutlined, RedoOutl
 import type { GetProps } from 'antd';
 import { chatBubbleHandler } from './Functions/Functions.tsx';
 import { IChatMessage } from './Interfaces/Interfaces.ts';
+import { useSearchParams } from 'react-router-dom';
 
 type props = PropsFromRedux;
 type SearchProps = GetProps<typeof Input.Search>;
@@ -18,11 +19,12 @@ const ChatWindow: React.FC<props> = (props) => {
     const [userQuery, setUserQuery] = useState('');
     const [chatList, setChatList] = useState<(JSX.Element | undefined)[]>([]);
 
-
     const { Search } = Input;
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
 
-    console.log("MAN", messages);
+    const conversationId = searchParams.get('conversationId')
+    console.log("Aligator", conversationId);
 
     const actionItems = [
         {
@@ -36,7 +38,6 @@ const ChatWindow: React.FC<props> = (props) => {
             label: 'Copy',
         },
     ];
-
 
     //get all available projects
     // useEffect(() => {
@@ -104,7 +105,7 @@ const ChatWindow: React.FC<props> = (props) => {
 
     useEffect(() => {
         getChatMessages({
-            conversationId: "6f1e8c1a-9a8b-4c5d-b1a7-3a7f9e4a9d5e"
+            conversationId: conversationId
         });
     }, [])
 
