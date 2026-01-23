@@ -6,13 +6,11 @@ import { HomeService } from "../../services/Home/index.ts";
 export const HomeSagas = {
   userQuery : {
     set : function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           HomeService.setUserQuery , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             HomeActions.userQuery.success(data)
           )
@@ -28,13 +26,11 @@ export const HomeSagas = {
   ,
   userLoginInfo : {
     get : function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           HomeService.getUserLoginInfo , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             HomeActions.userLoginInfo.success(data)
           )
@@ -43,6 +39,26 @@ export const HomeSagas = {
       } catch (error) {
         yield put(
             HomeActions.userLoginInfo.fail(error.response.data?.errorCode)
+        );
+      }
+    },
+  }
+  ,
+  conversationIdentifier : {
+    set : function* (action: any) {
+      try {
+        const { data, status } = yield call(
+          HomeService.setConversationIdentifier , action.payload.data
+        );
+        if (status == 200) {
+          yield put(
+            HomeActions.conversationIdentifier.success(data)
+          )
+        }
+
+      } catch (error) {
+        yield put(
+            HomeActions.conversationIdentifier.fail(error.response.data?.errorCode)
         );
       }
     },
@@ -58,5 +74,10 @@ export default [
     takeLatest(
       Home.GET_USER_LOGIN_INFO,
       HomeSagas.userLoginInfo.get
+    )
+    ,
+    takeLatest(
+      Home.SET_CONVERSATION_IDENTIFIER,
+      HomeSagas.conversationIdentifier.set
     )
   ]

@@ -1360,3 +1360,213 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+
+/////Styles for chat-window//////
+.chat-bubble .ant-bubble-body {
+  /* Glass background */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+  /* Frosted glass blur */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  /* Soft border */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* Rounded & spacing */
+  border-radius: 16px;
+  padding: 12px 16px;
+
+  /* Glow */
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.37),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  /* Text */
+  color: #ffffff;
+}
+
+.chat-bubble .ant-bubble-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(140, 0, 255, 0.6),
+    rgba(0, 180, 255, 0.6)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+// .app-content{
+//     background-color: #0E1011;
+// }
+
+body {
+  background: radial-gradient(
+    circle at top right,
+    #2b1055,
+    #000000
+  );
+}
+
+.app-header {
+    background: radial-gradient(
+    circle at top right,
+    #2b1055,
+    #000000
+  );
+}
+
+.header-nav {
+    color: white;
+}
+
+.header-nav{
+    color: white;
+}
+
+.chat-bubble .ant-bubble-body,
+.chat-bubble .ant-bubble-body * {
+  color: #ffffff !important;
+  fill: #ffffff !important;   /* SVG icons */
+  stroke: #ffffff !important; /* outlined icons */
+}
+
+/* Target the whole header */
+.app-header {
+  color: #fff !important; /* All text inside white */
+  background-color: #000; /* Optional: make header background dark */
+}
+
+/* Links and nav items */
+.app-header .nav-link,
+.app-header .c-nav-item,
+.app-header .c-dropdown-item,
+.app-header .c-header-nav {
+  color: #fff !important;
+}
+
+/* Divider lines (vertical line) */
+.app-header .vr {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Icons inside header */
+.app-header svg,
+.app-header .c-icon {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+/* Dropdown menu text */
+.app-header .c-dropdown-menu .c-dropdown-item {
+  color: #fff !important;
+}
+
+/* Optional: make dropdown menu background dark so white text is visible */
+.app-header .c-dropdown-menu {
+  background-color: #111 !important;
+}
+
+/* Make header and all content white */
+.app-header {
+  color: #fff !important;
+  background-color: #000; /* optional dark background */
+  margin: 0 !important; /* remove any header margin */
+  padding: 0 !important; /* remove header padding if needed */
+}
+
+/* Container inside header */
+.app-header .c-container {
+  padding: 0 !important; /* remove container padding */
+  margin: 0 !important;  /* remove container margin */
+}
+
+/* Nav links, dropdowns, and nav items */
+.app-header .nav-link,
+.app-header .c-nav-item,
+.app-header .c-dropdown-item,
+.app-header .c-header-nav {
+  color: #fff !important;
+  margin: 0 !important;
+  padding: 0.25rem 0.5rem !important; /* optional smaller spacing */
+}
+
+/* Divider lines */
+.app-header .vr {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  margin: 0 !important;
+}
+
+/* Icons */
+.app-header svg,
+.app-header .c-icon {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+/* Dropdown menu */
+.app-header .c-dropdown-menu {
+  background-color: #111 !important;
+  margin: 0 !important;
+  padding: 0.25rem 0 !important;
+}
+
+/* Optional: remove default list styles for nav items */
+.app-header .nav-item {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Container that holds the sender at the bottom */
+.chat-footer {
+  position: sticky;
+  bottom: 20px; /* Distance from the bottom edge */
+  z-index: 10;
+  padding: 0 20px 20px 20px;
+  background: transparent; /* Ensures the background shows through */
+}
+
+.chat-sender-wrapper {
+  background-color: rgba(31, 31, 40, 0.4);
+  backdrop-filter: blur(12px); /* Blurred glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(128, 123, 255, 0.4);
+  border-radius: 16px;
+  padding: 8px 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Force transparency on the internal Sender components */
+.chat-sender-wrapper .chat-sender,
+.chat-sender-wrapper .chat-sender textarea,
+.chat-sender-wrapper .chat-sender input,
+.chat-sender-wrapper .ant-input-affix-wrapper {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+}
+
+/* Optional: Make the border glow when typing */
+.chat-sender-wrapper:focus-within {
+  border-color: rgba(128, 123, 255, 0.8);
+  box-shadow: 0 0 15px rgba(128, 123, 255, 0.3);
+}

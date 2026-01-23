@@ -54,7 +54,7 @@ export const LoginActions = {
       type: GET_USER_LOGIN_INFO_SUCCESS,
       payload: {
         data,
-        isLoading: true
+        isLoading: false
       },
     }),
     fail: (data: any) => ({

@@ -23,7 +23,6 @@ export const changeState = (state = initialState, { type, ...rest }) => {
 export const updateSeatIDStringReducer = (state = initialSeatIdString, action) => {
   switch (action.type) {
     case 'SEAT_IDS':
-      console.log("skyline");
       return {
         ...state,
         seatString: action.payload

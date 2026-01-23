@@ -4,7 +4,6 @@ import { ChatWindowInitState } from "./States/InitState.ts";
 
 
 export const ChatWindowReducer = (state = ChatWindowInitState, action: any) => {
-    console.log("pannda", action);
     switch (action.type) {
         case ChatWindow.GET_ALL_CHAT_MESSAGES:
             return {

@@ -4,7 +4,6 @@ import { AppSidebarInitState } from "./States/InitState.ts";
 
 
 export const AppSidebarReducer = (state = AppSidebarInitState, action: any) => {
-    console.log("pannda", action);
     switch (action.type) {
         case AppSidebar.GET_CONVERSATION_LIST_BY_USER:
             return {

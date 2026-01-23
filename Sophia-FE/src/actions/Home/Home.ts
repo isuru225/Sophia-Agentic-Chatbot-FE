@@ -8,7 +8,11 @@ const
     SET_USER_QUERY_FAIL,
     GET_USER_LOGIN_INFO,
     GET_USER_LOGIN_INFO_SUCCESS,
-    GET_USER_LOGIN_INFO_FAIL
+    GET_USER_LOGIN_INFO_FAIL,
+    SET_CONVERSATION_IDENTIFIER,
+    SET_CONVERSATION_IDENTIFIER_SUCCESS,
+    SET_CONVERSATION_IDENTIFIER_FAIL,
+    SET_INITIAL_QUERY
 
   } = Home
 
@@ -64,7 +68,7 @@ export const HomeActions = {
       type: GET_USER_LOGIN_INFO_SUCCESS,
       payload: {
         data,
-        isLoading: true
+        isLoading: false
       },
     }),
     fail: (data: any) => ({
@@ -74,5 +78,43 @@ export const HomeActions = {
         isLoading: false,
       },
     })
+  }
+  ,
+  conversationIdentifier: {
+    set: (data: any) => (
+      {
+        type: SET_CONVERSATION_IDENTIFIER,
+        payload: {
+          data,
+          isLoading: true
+        },
+      }
+    ),
+    success: (data: any) => ({
+      type: SET_CONVERSATION_IDENTIFIER_SUCCESS,
+      payload: {
+        data,
+        isLoading: false
+      },
+    }),
+    fail: (data: any) => ({
+      type: SET_CONVERSATION_IDENTIFIER_FAIL,
+      payload: {
+        data,
+        isLoading: false,
+      },
+    })
+  }
+  ,
+  initialQuery: {
+    set: (data: any) => (
+      {
+        type: SET_INITIAL_QUERY,
+        payload: {
+          data,
+          isLoading: true
+        },
+      }
+    )
   }
 }

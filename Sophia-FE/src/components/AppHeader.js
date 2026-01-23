@@ -37,9 +37,6 @@ const AppHeader = (props) => {
   const navigate = useNavigate();
   const { user } = props ?? {}
 
-  console.log("HOLEEOLLEE",user?.data)
-   console.log("HOLEEOLLEE22222222222",user?.data.isValid)
-
   useEffect(() => {
     if(user?.data?.isValid === false){
       navigate("/login")
@@ -55,14 +52,14 @@ const AppHeader = (props) => {
   }, [])
 
   return (
-    <CHeader position="sticky" className="mb-4 p-1" ref={headerRef}>
+    <CHeader position="sticky" className="mb-4 p-1 app-header" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
         {/* <CHeaderToggler
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
           style={{ marginInlineStart: '-14px' }}
         > */}
         {/* <CIcon icon={cilMenu} size="lg" /> */}
-        <CHeaderNav className="d-none d-md-flex">
+        <CHeaderNav className="header-nav d-none d-md-flex">
           <CNavItem >
             <CNavLink href="/" to="/dashboard" component={NavLink}>
               {/* <img src={logo} className="main-logo" /> */}
@@ -70,9 +67,9 @@ const AppHeader = (props) => {
           </CNavItem>
         </CHeaderNav>
         {/* //</CHeaderToggler> */}
-        <CHeaderNav className="d-none d-md-flex">
+        <CHeaderNav className="header-nav d-none d-md-flex">
           <CNavItem>
-            <CNavLink href="/" component={NavLink}>
+            <CNavLink href="/home" component={NavLink}>
               Home
             </CNavLink>
           </CNavItem>

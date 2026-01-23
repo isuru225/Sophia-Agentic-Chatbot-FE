@@ -38,7 +38,6 @@ const AppHeaderDropdown = ({ logoutHandler }) => {
   const navigate = useNavigate();
 
   const userLogOutHandler = () => {
-    console.log("Siril");
     setVisible(true);
   }
 

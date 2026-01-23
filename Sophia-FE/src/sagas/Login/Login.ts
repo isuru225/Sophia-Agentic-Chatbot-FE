@@ -12,15 +12,12 @@ export const LoginSagas = {
           LoginService.logUserCredentials, action.payload.data
         );
         if (status == 200) {
-          console.log("light234", data);
           yield put(
             LoginActions.userCredentials.success(data)
           )
         }
 
       } catch (error) {
-        console.log("fish", error.response.data?.errorCode);
-        console.log("fish222", typeof (error.response.data?.errorCode))
         yield put(
           LoginActions.userCredentials.fail(error.response.data?.errorCode)
         );
@@ -30,13 +27,11 @@ export const LoginSagas = {
   ,
   userLoginInfo: {
     get: function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           LoginService.getUserLoginInfo, action.payload.data
         );
         if (status == 200) {
-          console.log("light234", data);
           yield put(
             LoginActions.userLoginInfo.success(data)
           )

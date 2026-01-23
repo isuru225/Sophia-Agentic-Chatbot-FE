@@ -1,6 +1,7 @@
 import React,{ useEffect } from 'react'
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { CNavItem } from '@coreui/react'
+import { useLocation } from 'react-router-dom'
 import {
   CCloseButton,
   CSidebar,
@@ -25,11 +26,13 @@ const AppSidebar = (props) => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const currentConversationId = queryParams.get('conversationId')
 
   const { conversationList, getConversationList, loginInfo } = props ?? {}
 
   useEffect(()=>{
-      console.log("Jaguar",loginInfo?.id)
       if(loginInfo?.id){
           getConversationList({
             userId : loginInfo?.id
@@ -37,7 +40,6 @@ const AppSidebar = (props) => {
       }
   },[loginInfo?.id])
 
-  console.log("Horse",conversationList?.data);
 
 
   // [
@@ -58,10 +60,10 @@ const AppSidebar = (props) => {
       return {
         component: CNavItem,
         name: chat?.title,
-        href: `/#/chatwindow?conversationId=${chat?.id}`,
+        href: `/chatwindow?conversationId=${chat?.id}`,
+        active: currentConversationId === String(chat?.id)
       }
     })
-    console.log("HelloHello",result)
     return result
   }
 

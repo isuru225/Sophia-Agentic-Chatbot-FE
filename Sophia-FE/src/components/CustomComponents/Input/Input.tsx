@@ -11,7 +11,6 @@ type props = {
 
 const CustomInput = ({ label, ...rest }: props) => {
     const [field, meta, helpers] = useField(rest);
-    console.log("DK33",field)
     return (
         <>
             <label>{label}</label>

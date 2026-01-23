@@ -4,5 +4,13 @@ export interface HomeInterface {
     user : {
         data : object,
         isLoading : boolean
+    },
+    conversationIdentifier : {
+        data : object,
+        isLoading : boolean
+    },
+    initialUserQuery : {
+        isInitialResponse : boolean,
+        data : string
     }
 }

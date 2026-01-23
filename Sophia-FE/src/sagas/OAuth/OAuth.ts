@@ -6,13 +6,11 @@ import { OAuthService } from "../../services/OAuth/index.ts";
 export const OAuthSagas = {
   authURL : {
     get : function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           OAuthService.getAuthURL , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             OAuthActions.authURL.success(data)
           )
@@ -28,13 +26,11 @@ export const OAuthSagas = {
   ,
   authCode : {
     set : function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           OAuthService.setAuthCode , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             OAuthActions.authCode.success(data)
           )

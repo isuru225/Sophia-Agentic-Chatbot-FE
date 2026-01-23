@@ -1,7 +1,7 @@
 export interface IChatMessage 
 {
     user_query_content: string,
-    conversation_id: string,
+    conversation_id: string | null,
     meta: object
 }
 

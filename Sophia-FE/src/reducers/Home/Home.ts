@@ -4,7 +4,6 @@ import { HomeInitState } from "./States/InitState.ts";
 
 
 export const HomeReducer = (state = HomeInitState, action: any) => {
-    console.log("pannda", action);
     switch (action.type) {
         case Home.SET_USER_QUERY:
             return {
@@ -45,6 +44,35 @@ export const HomeReducer = (state = HomeInitState, action: any) => {
                     ...state.user,
                     isLoading: action.payload.isLoading
                 }
+            }
+        case Home.SET_CONVERSATION_IDENTIFIER:
+            return {
+                ...state,
+                conversationIdentifier: {
+                    ...state.user,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Home.SET_CONVERSATION_IDENTIFIER_SUCCESS:
+            return {
+                ...state,
+                conversationIdentifier: {
+                    data: action.payload.data,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Home.SET_CONVERSATION_IDENTIFIER_FAIL:
+            return {
+                ...state,
+                conversationIdentifier: {
+                    ...state.user,
+                    isLoading: action.payload.isLoading
+                }
+            }
+        case Home.SET_INITIAL_QUERY:
+            return {
+                ...state,
+                initialUserQuery: action.payload.data
             }
         default:
             return state;

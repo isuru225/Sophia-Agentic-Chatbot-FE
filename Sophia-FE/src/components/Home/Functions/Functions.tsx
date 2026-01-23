@@ -37,8 +37,6 @@ export const techStackHandler = (techStack : Array<string>) : Array<object> => {
             children : technology
         }
     })
-
-    console.log("F1",items);
     return items;
 }
 

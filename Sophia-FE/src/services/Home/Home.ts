@@ -24,4 +24,16 @@ export default {
             }
         });
     }
+    ,
+    setConversationIdentifier : (params: any): Promise<any> => {
+
+        return new Promise<any>(async (resolve, reject) => {
+            try {
+                const { data, status } =  await sophiaHttpColection.post('api/conversationinfo',params);
+                resolve({ data, status });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 }

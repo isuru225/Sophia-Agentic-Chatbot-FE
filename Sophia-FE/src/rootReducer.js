@@ -1,33 +1,29 @@
-import {combineReducers} from "redux"
-import 
-{
-   changeState,
-   updateSeatIDStringReducer,
-   updateSelectedMovieIdReducer,
-} 
-from './reducer'
-import 
-{ 
-    HomeReducer,
-    LoginReducer,
-    DashboardReducer,
-    TasksReducer,
-    ChatWindowReducer,
-    OAuthReducer,
-    AppSidebarReducer
-  
+import { combineReducers } from "redux"
+import {
+changeState,
+updateSeatIDStringReducer,
+updateSelectedMovieIdReducer,
+}
+    from './reducer'
+import {
+HomeReducer,
+LoginReducer,
+DashboardReducer,
+ChatWindowReducer,
+OAuthReducer,
+AppSidebarReducer
+
 } from "./reducers/index.ts"
 
- export default combineReducers({
+export default combineReducers({
     changeState,
     updateSeatIDStringReducer,
     updateSelectedMovieIdReducer,
 
-     HomeReducer,
-     LoginReducer,
-     DashboardReducer,
-     TasksReducer,
-     ChatWindowReducer,
-     OAuthReducer,
-     AppSidebarReducer
- })
+    HomeReducer,
+    LoginReducer,
+    DashboardReducer,
+    ChatWindowReducer,
+    OAuthReducer,
+    AppSidebarReducer
+})

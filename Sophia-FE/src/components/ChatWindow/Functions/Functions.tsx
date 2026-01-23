@@ -20,12 +20,12 @@ const actionItems = [
 
 export const chatBubbleHandler = (messages: Array<IResponse>): (JSX.Element | undefined)[] => {
     const messageBuggles: JSX.Element[] = [];
-    console.log("VX",messages)
-    messages?.forEach((message:IResponse) => {
+    messages?.forEach((message: IResponse) => {
         messageBuggles.push(
             <Flex gap="small" wrap>
                 <div style={{ width: '100%' }}>
                     <Bubble
+                        className='chat-bubble'
                         content={message.user_query_content}
                         header="You"
                         avatar={<Avatar icon={<UserOutlined />} />}
@@ -34,12 +34,12 @@ export const chatBubbleHandler = (messages: Array<IResponse>): (JSX.Element | un
                 </div>
             </Flex>
         )
-
         messageBuggles.push(
             <Flex gap="small" wrap>
                 <div style={{ width: '100%' }}>
                     <Bubble
-                        content={message.chatbot_response_content.final_ai_message.content}
+                        className='chat-bubble'
+                        content={message.chatbot_response_content?.tool_messages.length > 0 ? message.chatbot_response_content?.tool_messages[0].content[0].text : message.chatbot_response_content?.final_ai_message.content}
                         placement="end"
                         header="Sophia"
                         avatar={<img className={"sophia-chat-bubble-icon"} src="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp" />}

@@ -24,7 +24,6 @@ const IdentityProviders: React.FC<props> = (props) => {
     };
 
     useEffect(() => {
-        console.log("Savage", authURL)
         if (authURL?.data.auth_url != "" && authURL?.data.auth_url != undefined) {
             window.location.href = authURL?.data.auth_url
         }

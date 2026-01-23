@@ -4,7 +4,6 @@ import { OAuthInitState } from "./States/InitState.ts";
 
 
 export const OAuthReducer = (state = OAuthInitState, action: any) => {
-    console.log("pannda", action);
     switch (action.type) {
         case OAuth.GET_AUTHORIZATION_URL:
             return {

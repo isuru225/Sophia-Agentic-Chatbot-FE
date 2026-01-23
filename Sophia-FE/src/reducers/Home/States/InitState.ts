@@ -7,4 +7,14 @@ export const HomeInitState : HomeInterface= {
         data : {},
         isLoading : false
     }
+    ,
+    conversationIdentifier : {
+        data : {},
+        isLoading : false
+    }
+    ,
+    initialUserQuery : {
+        isInitialResponse : false,
+        data : ""
+    }
 }

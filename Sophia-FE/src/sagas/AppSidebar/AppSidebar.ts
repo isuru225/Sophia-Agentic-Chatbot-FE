@@ -6,13 +6,11 @@ import { AppSidebarService } from "../../services/AppSidebar/index.ts";
 export const AppSidebarSagas = {
   conversationList : {
     get : function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           AppSidebarService.getAllConversationList , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             AppSidebarActions.conversationList.success(data)
           )

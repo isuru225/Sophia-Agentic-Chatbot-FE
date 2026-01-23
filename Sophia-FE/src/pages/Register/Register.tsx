@@ -26,9 +26,6 @@ const Register : React.FC<props> = (props) => {
     const navigate = useNavigate();
 
     const submit = (values: IUserRegistration, actions: any) => {
-        console.log(values, "Virtual");
-        //registerUsers(values);
-        //actions.resetForm();
     }
 
     useEffect(()=>{

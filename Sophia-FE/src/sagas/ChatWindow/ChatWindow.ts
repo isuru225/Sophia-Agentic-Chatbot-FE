@@ -6,13 +6,11 @@ import { ChatWindowService } from "../../services/ChatWindow/index.ts";
 export const ChatWindowSagas = {
   chatMessages : {
     get : function* (action: any) {
-      console.log("raven");
       try {
         const { data, status } = yield call(
           ChatWindowService.getAllChatMessages , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             ChatWindowActions.chatMessages.success(data)
           )
@@ -33,7 +31,6 @@ export const ChatWindowSagas = {
           ChatWindowService.getUserQueryResponse , action.payload.data
         );
         if (status == 200) {
-          console.log("light234",data);
           yield put(
             ChatWindowActions.userQueryResponse.success(data)
           )

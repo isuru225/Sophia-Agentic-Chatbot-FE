@@ -1,7 +1,6 @@
 export * from "./Home/Home.ts"
 export * from "./Dashboard/Dashboard.ts"
 export * from "./Login/Login.ts"
-export * from "./Tasks/Tasks.ts"
 export * from "./ChatWindow/ChatWindow.ts"
 export * from "./OAuth/OAuth.ts"
 export * from "./AppSidebar/AppSidebar.ts"

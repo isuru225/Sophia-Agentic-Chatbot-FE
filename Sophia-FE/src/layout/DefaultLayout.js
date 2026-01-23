@@ -13,15 +13,13 @@ const DefaultLayout = (props) => {
     getUserLoginInfo({})
   },[])
 
-  console.log("Timerrr",user?.data);
-
   return (
     <div>
-      <AppSidebar loginInfo = {user?.data?.loginInfo}/>
+      <AppSidebar loginInfo = {user?.data?.loginInfo} className="app-sidebar"/>
       <div className="wrapper d-flex flex-column min-vh-100">
-        <AppHeader user={user} />
-        <div className="body flex-grow-1">
-          <AppContent />
+        <AppHeader user={user} className="app-header"/>
+        <div className="body flex-grow-1 app-content">
+          <AppContent user={user}/>
         </div>
         {/* <AppFooter /> */}
       </div>
